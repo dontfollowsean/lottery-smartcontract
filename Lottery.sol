@@ -7,8 +7,8 @@ contract Lottery {
     uint totalBets = 0;
     address owner;
 
-    function Lottery() {
-            owner = msg.sender;
+    function Lottery() public {
+        owner = msg.sender;
     }
 
     function bet() public payable {
