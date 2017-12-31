@@ -17,4 +17,19 @@ contract Lottery {
             totalBets += msg.value;
         }
     }
+
+    // TODO: use a real random number
+    function chooseWinner() public {
+        if (msg.sender == owner) {
+            uint sum = 0;
+            uint winner = uint(block.blockhash(block.number-1) % totalBets);
+            for (uint i = 0; i < totalUsers; i++) {
+                sum += userBets[users[i]];
+                if (sum >= winner) {
+                    selfdestruct(users[i]);
+                    return;
+                }
+            }
+        }
+    }
 }
