@@ -7,6 +7,10 @@ contract Lottery {
     uint totalBets = 0;
     address owner;
 
+    function Lottery() {
+            owner = msg.sender;
+    }
+
     function bet() public payable {
         if (msg.value > 0) {
             if (userBets[msg.sender] == 0) {
